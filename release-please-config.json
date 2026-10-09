@@ -11,7 +11,8 @@
           "path": "plugins/github/plugin.json",
           "jsonpath": "$.version"
         }
-      ]
+      ],
+      "initial-version": "1.0.0"
     }
   }
 }
