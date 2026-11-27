@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/tader/switchboard-plugin-github/compare/v1.1.0...v1.2.0) (2026-11-27)
+
+
+### Features
+
+* add GitHub account type activity previews ([#2](https://github.com/tader/switchboard-plugin-github/issues/2)) ([7322ec6](https://github.com/tader/switchboard-plugin-github/commit/7322ec683fd40d731fa90a9ece49de2b2208f608))
+
 ## [1.1.0](https://github.com/tader/switchboard-plugin-github/compare/v1.0.0...v1.1.0) (2026-10-09)
 
 
