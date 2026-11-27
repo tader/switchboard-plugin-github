@@ -1,4 +1,4 @@
-import type { AccountInfo, PluginContext } from './types/api.d.ts';
+import type { AccountInfo, PluginContext, PluginInstance } from './types/api.d.ts';
 import type * as OAuth2 from './types/oauth2.d.ts';
 import type * as ApiKey from './types/api-key.d.ts';
 
@@ -12,7 +12,7 @@ async function whoami(token: string): Promise<AccountInfo> {
   return { id: String(u.id), label: u.login, avatarUrl: u.avatar_url };
 }
 
-export default function setup(ctx: PluginContext) {
+export default function setup(ctx: PluginContext): PluginInstance {
   const oauth = ctx.require<typeof OAuth2>('oauth2');
   const apiKey = ctx.require<typeof ApiKey>('api-key');
   const { clientId, clientSecret } = ctx.settings;
@@ -37,6 +37,13 @@ export default function setup(ctx: PluginContext) {
         docsUrl: 'https://docs.github.com/rest',
         baseUrl: 'https://api.github.com',
         allowedHosts: ['api.github.com', 'uploads.github.com'],
+        outputPreviews: [{
+          origin: 'https://api.github.com',
+          method: 'GET',
+          path: '/user',
+          authMethods: ['token', 'oauth', 'device'],
+          fields: { type: { maxBytes: 32 } },
+        }],
         openapi: 'https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json',
         authMethods: [
           apiKey.bearerToken({
